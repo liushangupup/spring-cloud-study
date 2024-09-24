@@ -12,6 +12,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.concurrent.TimeUnit;
+
 @RestController
 @Slf4j
 @Tag(name = "支付微服务模块",description = "支付CRUD")
@@ -45,6 +47,12 @@ public class PayController {
     @GetMapping(value = "/pay/get/{id}")
     @Operation(summary = "按照ID查流水",description = "查询支付流水方法")
     public ResultData<Pay> getById(@PathVariable("id") Integer id){
+        //暂停62秒钟线程，故意写bug，测试出feign的默认调用超时时间
+        try {
+            TimeUnit.SECONDS.sleep(65);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return ResultData.success(payService.getById(id));
     }
 
