@@ -1,5 +1,6 @@
 package com.liushang.cloud.config;
 
+import feign.Logger;
 import feign.Retryer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,6 +26,11 @@ public class FeignConfig {
 //
 //        Max Attempts (最大请求次数): 第三个参数表示最大的请求重试次数，包括初始请求和重试次数。例如，如果设置为3，则表示最多进行2次重试（总共3次请求，包括初始请求）。
         return new Retryer.Default(100,1000,3);
+    }
+
+    @Bean
+    Logger.Level feignLoggerLevel() {
+        return Logger.Level.FULL;
     }
 
 }

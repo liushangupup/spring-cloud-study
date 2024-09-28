@@ -37,3 +37,12 @@ spring:
         response:
           enabled: true
 
+# feign日志以什么级别监控哪个接口
+logging:
+  level:
+    com:
+      liushang:
+        cloud:
+          apis:
+            PayFeignApi: debug
+
