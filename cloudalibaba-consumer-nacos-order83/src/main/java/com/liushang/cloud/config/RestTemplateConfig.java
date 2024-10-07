@@ -16,6 +16,7 @@ public class RestTemplateConfig {
     @LoadBalanced //赋予RestTemplate负载均衡的能力
     public RestTemplate restTemplate()
     {
+        //测试nacos作为注册中心时客户端的负载均衡功能
         return new RestTemplate();
     }
 }
